@@ -2,7 +2,7 @@ import random
 
 import Settings
 
-class AppModel:
+class GameModel:
     def __init__(self):
         self.card_selected = None
         self.game_started = False
@@ -48,6 +48,11 @@ class AppModel:
     def is_game_runnning(self):
         return self.game_started
 
+    def is_game_finished(self):
+        if self.points == self.max_points:
+            return True
+        return False
+
     def select_card(self, x, y):
         if self.card_selected == (x, y) or self.was_collected(x, y):
             return False
@@ -72,8 +77,3 @@ class AppModel:
 
     def was_collected(self, x, y):
         return self.collected[y][x]
-
-    def is_game_finished(self):
-        if self.points == self.max_points:
-            return True
-        return False

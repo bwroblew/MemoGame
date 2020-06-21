@@ -1,10 +1,10 @@
 import sys
 
 from PySide2.QtWidgets import QApplication
-from AppScreenQt import AppScreenQt
+from GameViewQt import GameViewQt
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    view = AppScreenQt()
-    view.show()
+    game_view = GameViewQt()
+    game_view.show()
     sys.exit(app.exec_())
