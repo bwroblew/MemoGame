@@ -1,6 +1,6 @@
-from PySide2 import QtCore
-from PySide2.QtGui import QFont
-from PySide2.QtWidgets import QButtonGroup, QHBoxLayout, QVBoxLayout, QGridLayout, QPushButton, QSizePolicy, QLabel, QWidget
+from PyQt5 import QtCore
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QButtonGroup, QHBoxLayout, QVBoxLayout, QGridLayout, QPushButton, QSizePolicy, QLabel, QWidget
 from qtpy import QtWidgets
 
 from GameModel import GameModel

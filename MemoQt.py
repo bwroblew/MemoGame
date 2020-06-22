@@ -1,6 +1,6 @@
 import sys
 
-from PySide2.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication
 from GameViewQt import GameViewQt
 
 if __name__ == "__main__":
