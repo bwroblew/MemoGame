@@ -20,6 +20,9 @@ WINDOW_HEIGHT = BOARD_HEIGHT + FOOTER_HEIGHT + 2 * MARGIN
 NEW_GAME_BUTTON_TEXT = "Rozpocznij nową grę!"
 POINTS_LABEL = "Znalezione pary:"
 
+MENU_INFO_TITLE = "Informacje"
+MENU_HELP_TITLE = "Pomoc"
+MENU_QUIT_TITLE = "Wyjdź"
 HELP_TITLE = "Pomoc"
 HELP_TEXT = "Zdobywaj punkty poprzez odkrywanie i łączenie w pary kart z takimi samymi liczbami!"\
         " Gra ma na celu trening pamięci i koncentracji, dlatego nie jest w niej liczony czas!"\
