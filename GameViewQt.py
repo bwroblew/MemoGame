@@ -55,6 +55,9 @@ class GameViewQt(QMainWindow):
         help_action = QAction(Settings.HELP_TITLE, self)
         help_action.triggered.connect(self.initialize_help)
         info_menu.addAction(help_action)
+        quit_action = QAction(Settings.MENU_QUIT_TITLE, self)
+        quit_action.triggered.connect(self.close)
+        menu_bar.addAction(quit_action)
 
     def initialize_help(self):
         help_dialog = QDialog(self)
