@@ -47,6 +47,11 @@ class GameViewGtk(Gtk.Window):
         help_item.connect("activate", self.help_display)
         menu.append(help_item)
         menu_bar.append(info_item)
+        quit_item = Gtk.MenuItem("Wyjdź")
+        def destroy(widget):
+            Gtk.main_quit()
+        quit_item.connect("activate", destroy)
+        menu_bar.append(quit_item)
         menu_box = Gtk.VBox(False, 2)
         menu_box.pack_start(menu_bar, False, False, 0)
         self.main_box.pack_start(menu_box, True, True, 0)
