@@ -10,7 +10,7 @@ class GameViewGtk(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title=Settings.GAME_TITLE)
         self.game = GameModel()
-        self.set_default_size(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT)
+        self.set_default_size(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT + Settings.GTK_EXTRA_FOOTER)
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(self.main_box)
         self.initialize_menu()
@@ -52,7 +52,7 @@ class GameViewGtk(Gtk.Window):
             Gtk.main_quit()
         quit_item.connect("activate", destroy)
         menu_bar.append(quit_item)
-        menu_box = Gtk.VBox(False, 2)
+        menu_box = Gtk.VBox()
         menu_box.pack_start(menu_bar, False, False, 0)
         self.main_box.pack_start(menu_box, True, True, 0)
 
@@ -64,7 +64,7 @@ class GameViewGtk(Gtk.Window):
             Gtk.ButtonsType.OK,
             Settings.HELP_TITLE,
         )
-        help_dialog.format_secondary_text( Settings.HELP_TEXT)
+        help_dialog.format_secondary_text(Settings.HELP_TEXT)
         def dialog_response(widget, response_id):
             widget.destroy()
         help_dialog.connect("response", dialog_response)
