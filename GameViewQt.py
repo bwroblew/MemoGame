@@ -1,24 +1,28 @@
 from PyQt5 import QtCore
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QButtonGroup, QHBoxLayout, QVBoxLayout, QGridLayout, QPushButton, QSizePolicy, QLabel, QWidget
+from PyQt5.QtWidgets import QMainWindow, QAction, QDialog, QButtonGroup, QHBoxLayout, QVBoxLayout, QGridLayout, QPushButton, QSizePolicy, QLabel, QWidget
 
 from GameModel import GameModel
 import Settings
 
 
-class GameViewQt(QWidget):
+class GameViewQt(QMainWindow):
     def __init__(self):
-        super().__init__()
+        super(GameViewQt, self).__init__()
         self.setWindowTitle(Settings.GAME_TITLE)
         self.game = GameModel()
         self.main_window_layout = QVBoxLayout()
         self.setMinimumSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT)
         self.initialize_board()
-        self.initialize_help()
+        self.initialize_menu()
         self.add_start_button()
         self.add_points_view()
         self.setLayout(self.main_window_layout)
         self.start_game()
+        widget = QWidget()
+        widget.setLayout(self.main_window_layout)
+        self.setCentralWidget(widget)
+        self.show()
 
     def initialize_board(self):
         frame_widget = QWidget()
@@ -45,16 +49,22 @@ class GameViewQt(QWidget):
         self.cards.buttonPressed.connect(self.card_clicked)
         self.main_window_layout.addLayout(cards_layout)
 
-    def initialize_help(self):
-        help_layout = QVBoxLayout()
-        self.help_label = QLabel(Settings.HELP_TEXT)
-        self.help_label.setWordWrap(True)
-        self.help_label.setFont(QFont("Arial", 12))
-        self.help_label.setAlignment(QtCore.Qt.AlignJustify)
+    def initialize_menu(self):
+        menu_bar = self.menuBar()
+        info_menu = menu_bar.addMenu(Settings.MENU_INFO_TITLE)
+        help_action = QAction(Settings.HELP_TITLE, self)
+        help_action.triggered.connect(self.initialize_help)
+        info_menu.addAction(help_action)
 
-        self.help_label.setStyleSheet(Settings.Qt.HELP_STYLE)
-        help_layout.addWidget(self.help_label)
-        self.main_window_layout.addLayout(help_layout)
+    def initialize_help(self):
+        help_dialog = QDialog(self)
+        help_dialog.setWindowTitle(Settings.HELP_TITLE)
+        help_layout = QVBoxLayout()
+        help_label = QLabel(Settings.HELP_TEXT)
+        help_label.setWordWrap(True)
+        help_layout.addWidget(help_label)
+        help_dialog.setLayout(help_layout)
+        help_dialog.show()
 
     def add_start_button(self):
         self.start_button = QPushButton(Settings.NEW_GAME_BUTTON_TEXT, self)
