@@ -1,13 +1,12 @@
 from PyQt5 import QtCore
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QButtonGroup, QHBoxLayout, QVBoxLayout, QGridLayout, QPushButton, QSizePolicy, QLabel, QWidget
-from qtpy import QtWidgets
 
 from GameModel import GameModel
 import Settings
 
 
-class GameViewQt(QtWidgets.QWidget):
+class GameViewQt(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(Settings.GAME_TITLE)

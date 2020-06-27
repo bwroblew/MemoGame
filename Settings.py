@@ -20,6 +20,7 @@ WINDOW_HEIGHT = BOARD_HEIGHT + FOOTER_HEIGHT + 2 * MARGIN
 NEW_GAME_BUTTON_TEXT = "Rozpocznij nową grę!"
 POINTS_LABEL = "Znalezione pary:"
 
+HELP_TITLE = "Pomoc"
 HELP_TEXT = "Zdobywaj punkty poprzez odkrywanie i łączenie w pary kart z takimi samymi liczbami!"\
         " Gra ma na celu trening pamięci i koncentracji, dlatego nie jest w niej liczony czas!"\
         " Nie spiesz się! Gdy połączysz ze sobą wszystie karty, gra rozpocznie się ponownie."
@@ -53,6 +54,7 @@ class Gtk:
             
             #visible_card {
                 background: %s;
+                color: black;
                 border-style: solid;
                 border-color: black;
                 border-width: 1px;
@@ -60,6 +62,7 @@ class Gtk:
 
             #card_reverse {
                 background: %s;
+                color: black;
                 border-style: solid;
                 border-color: black;
                 border-width: 1px;
@@ -67,6 +70,7 @@ class Gtk:
             
             #collected_card {
                 background: %s;
+                color: black;
                 border-style: solid;
                 border-color: black;
                 border-width: 1px;

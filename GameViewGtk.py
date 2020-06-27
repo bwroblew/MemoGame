@@ -13,8 +13,8 @@ class GameViewGtk(Gtk.Window):
         self.set_default_size(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT)
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(self.main_box)
+        self.initialize_menu()
         self.initialize_board()
-        self.initialize_help()
         self.add_start_button()
         self.add_points_view()
         self.load_css_layout()
@@ -38,13 +38,32 @@ class GameViewGtk(Gtk.Window):
             button.connect("pressed", self.card_clicked)
             self.cards_layout.attach(button, x, y, 1, 1)
 
-    def initialize_help(self):
-        self.help_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.help_label = Gtk.Label(Settings.HELP_TEXT)
-        self.help_label.set_line_wrap(True)
-        self.help_label.set_name("help_label")
-        self.help_box.pack_start(self.help_label, True, True, 0)
-        self.main_box.pack_start(self.help_box, True, True, 0)
+    def initialize_menu(self):
+        menu_bar = Gtk.MenuBar()
+        menu = Gtk.Menu()
+        info_item = Gtk.MenuItem("Informacje")
+        info_item.set_submenu(menu)
+        help_item = Gtk.MenuItem("Pomoc")
+        help_item.connect("activate", self.help_display)
+        menu.append(help_item)
+        menu_bar.append(info_item)
+        menu_box = Gtk.VBox(False, 2)
+        menu_box.pack_start(menu_bar, False, False, 0)
+        self.main_box.pack_start(menu_box, True, True, 0)
+
+    def help_display(self, widget):
+        help_dialog = Gtk.MessageDialog(
+            self,
+            0,
+            Gtk.MessageType.OTHER,
+            Gtk.ButtonsType.OK,
+            Settings.HELP_TITLE,
+        )
+        help_dialog.format_secondary_text( Settings.HELP_TEXT)
+        def dialog_response(widget, response_id):
+            widget.destroy()
+        help_dialog.connect("response", dialog_response)
+        help_dialog.show()
 
     def add_start_button(self):
         self.start_button = Gtk.Button(Settings.NEW_GAME_BUTTON_TEXT,)
